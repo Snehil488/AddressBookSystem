@@ -26,6 +26,8 @@ namespace AddressBookSystem
             long phoneNumber = Convert.ToInt64(Console.ReadLine());
             addressBook.AddContact(firstName, lastName, address, city, state, email, zip, phoneNumber);
             addressBook.ViewContact();
+            addressBook.EditContact(firstName);
+            addressBook.ViewContact();
         }
     }
 }
