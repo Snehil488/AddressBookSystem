@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AddressBookSystem
 {
-    class AddressBook : IContacts
+    class AddressBook
     {
         private Dictionary<string, Contact> addressBook = new Dictionary<string, Contact>();
         public void AddContact(string firstName, string lastName, string address, string city, string state, string email, int zip, long phoneNumber)
@@ -19,6 +19,24 @@ namespace AddressBookSystem
             contact.Zip = zip;
             contact.PhoneNumber = phoneNumber;
             addressBook.Add(contact.FirstName, contact);
+            Console.WriteLine("\nAdded Succesfully. \n");
+        }
+        public void ViewContact(string name)
+        {
+            foreach (KeyValuePair<string, Contact> item in addressBook)
+            {
+                if (item.Key.Equals(name))
+                {
+                    Console.WriteLine("First Name : " + item.Value.FirstName);
+                    Console.WriteLine("Last Name : " + item.Value.LastName);
+                    Console.WriteLine("Address : " + item.Value.Address);
+                    Console.WriteLine("City : " + item.Value.City);
+                    Console.WriteLine("State : " + item.Value.State);
+                    Console.WriteLine("Email : " + item.Value.Email);
+                    Console.WriteLine("Zip : " + item.Value.Zip);
+                    Console.WriteLine("Phone Number : " + item.Value.PhoneNumber + "\n");
+                }
+            }
         }
         public void ViewContact()
         {
@@ -77,7 +95,20 @@ namespace AddressBookSystem
                             item.Value.PhoneNumber = Convert.ToInt64(Console.ReadLine());
                             break;
                     }
+                    Console.WriteLine("\nEdited Successfully.\n");
                 }
+            }
+        }
+        public void DeleteContact(string name)
+        {
+            if (addressBook.ContainsKey(name))
+            {
+                addressBook.Remove(name);
+                Console.WriteLine("\nDeleted Succesfully.\n");
+            }
+            else
+            {
+                Console.WriteLine("\nNot Found, Try Again.\n");
             }
         }
     }
