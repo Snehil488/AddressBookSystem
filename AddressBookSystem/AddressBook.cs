@@ -7,7 +7,8 @@ namespace AddressBookSystem
     class AddressBook : IContacts
     {
         private Dictionary<string, Contact> addressBook = new Dictionary<string, Contact>();
-        public void AddContact(string firstName, string lastName, string address, string city, string state, string email, int zip, long phoneNumber)
+        private Dictionary<string, AddressBook> addressBookDictionary = new Dictionary<string, AddressBook>();
+        public void AddContact(string firstName, string lastName, string address, string city, string state, string email, int zip, long phoneNumber, string bookName)
         {
             Contact contact = new Contact();
             contact.FirstName = firstName;
@@ -18,12 +19,12 @@ namespace AddressBookSystem
             contact.Email = email;
             contact.Zip = zip;
             contact.PhoneNumber = phoneNumber;
-            addressBook.Add(contact.FirstName, contact);
+            addressBookDictionary[bookName].addressBook.Add(contact.FirstName, contact);
             Console.WriteLine("\nAdded Succesfully. \n");
         }
-        public void ViewContact(string name)
+        public void ViewContact(string name, string bookName)
         {
-            foreach (KeyValuePair<string, Contact> item in addressBook)
+            foreach (KeyValuePair<string, Contact> item in addressBookDictionary[bookName].addressBook)
             {
                 if (item.Key.Equals(name))
                 {
@@ -38,9 +39,9 @@ namespace AddressBookSystem
                 }
             }
         }
-        public void ViewContact()
+        public void ViewContact(string bookName)
         {
-            foreach (KeyValuePair<string, Contact> item in addressBook)
+            foreach (KeyValuePair<string, Contact> item in addressBookDictionary[bookName].addressBook)
             {
                 Console.WriteLine("First Name : " + item.Value.FirstName);
                 Console.WriteLine("Last Name : " + item.Value.LastName);
@@ -52,9 +53,9 @@ namespace AddressBookSystem
                 Console.WriteLine("Phone Number : " + item.Value.PhoneNumber + "\n");
             }
         }
-        public void EditContact(string name)
+        public void EditContact(string name, string bookName)
         {
-            foreach (KeyValuePair<string, Contact> item in addressBook)
+            foreach (KeyValuePair<string, Contact> item in addressBookDictionary[bookName].addressBook)
             {
                 if (item.Key.Equals(name))
                 {
@@ -99,17 +100,22 @@ namespace AddressBookSystem
                 }
             }
         }
-        public void DeleteContact(string name)
+        public void DeleteContact(string name, string bookName)
         {
-            if (addressBook.ContainsKey(name))
+            if (addressBookDictionary[bookName].addressBook.ContainsKey(name))
             {
-                addressBook.Remove(name);
+                addressBookDictionary[bookName].addressBook.Remove(name);
                 Console.WriteLine("\nDeleted Succesfully.\n");
             }
             else
             {
                 Console.WriteLine("\nNot Found, Try Again.\n");
             }
+        }
+        public void AddAddressBook(string bookName)
+        {
+            AddressBook addressBook = new AddressBook();
+            addressBookDictionary.Add(bookName, addressBook);
         }
     }
 }
