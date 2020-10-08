@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AddressBookSystem
 {
@@ -16,18 +17,17 @@ namespace AddressBookSystem
             {
                 case 1:
                     addressBook.AddAddressBook(bookName);
-                    Console.WriteLine($"Working On {bookName} AddressBook");
                     break;
                 case 2:
                     Console.WriteLine("Enter Name Of New Addressbook You want to create : ");
                     bookName = Console.ReadLine();
                     addressBook.AddAddressBook(bookName);
-                    Console.WriteLine($"Working On {bookName} AddressBook");
                     break;
             }
             do
             {
-                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Exit Application\n");
+                Console.WriteLine($"Working On {bookName} AddressBook\n");
+                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Add New AddressBook \n7.Switch AddressBook \n8.Exit Application\n");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -67,12 +67,24 @@ namespace AddressBookSystem
                         break;
                     case 5:
                         addressBook.ViewContact(bookName);
-                        break;
+                        break;                    
                     case 6:
+                        Console.WriteLine("Enter Name For New AddressBook");
+                        addressBook.AddAddressBook(Console.ReadLine());
+                        break;                    
+                    case 7:
+                        Console.WriteLine("Enter Name Of AddressBook From Below List");
+                        foreach (KeyValuePair<string, AddressBook> item in addressBook.GetAddressBook())
+                        {
+                            Console.WriteLine(item.Key);
+                        }
+                        bookName = Console.ReadLine();
+                        break;
+                    case 8:
                         Console.WriteLine("Thank You For Using Address Book System.");
                         break;
                 }
-            } while (choice != 6);
+            } while (choice != 8);
         }
     }
 }

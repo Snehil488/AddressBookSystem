@@ -116,6 +116,11 @@ namespace AddressBookSystem
         {
             AddressBook addressBook = new AddressBook();
             addressBookDictionary.Add(bookName, addressBook);
+            Console.WriteLine("AddressBook Created.");
+        }
+        public Dictionary<string, AddressBook> GetAddressBook()
+        {
+            return addressBookDictionary;
         }
     }
 }
