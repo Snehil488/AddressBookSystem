@@ -70,7 +70,15 @@ namespace AddressBookSystem
                         break;                    
                     case 6:
                         Console.WriteLine("Enter Name For New AddressBook");
-                        addressBook.AddAddressBook(Console.ReadLine());
+                        string newAddressBook = Console.ReadLine();
+                        addressBook.AddAddressBook(newAddressBook);
+                        Console.WriteLine("Would you like to Switch to "+newAddressBook);
+                        Console.WriteLine("1.Yes \n2.No");
+                        int c = Convert.ToInt32(Console.ReadLine());
+                        if(c == 1)
+                        {
+                            bookName = newAddressBook;
+                        }
                         break;                    
                     case 7:
                         Console.WriteLine("Enter Name Of AddressBook From Below List");
@@ -78,7 +86,18 @@ namespace AddressBookSystem
                         {
                             Console.WriteLine(item.Key);
                         }
-                        bookName = Console.ReadLine();
+                        while (true)
+                        {
+                            bookName = Console.ReadLine();
+                            if (addressBook.GetAddressBook().ContainsKey(bookName))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("No such AddressBook found. Try Again.");
+                            }
+                        }
                         break;
                     case 8:
                         Console.WriteLine("Thank You For Using Address Book System.");
