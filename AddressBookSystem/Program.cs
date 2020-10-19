@@ -36,6 +36,11 @@ namespace AddressBookSystem
                         string firstName = Console.ReadLine();
                         Console.WriteLine("Enter Last Name :");
                         string lastName = Console.ReadLine();
+                        Contact temp = new Contact(firstName, lastName, null, null, null, null, 0, 0);
+                        if(addressBook.CheckDuplicateEntry(temp, bookName))
+                        {
+                            break;
+                        }
                         Console.WriteLine("Enter Address :");
                         string address = Console.ReadLine();
                         Console.WriteLine("Enter City :");
