@@ -107,6 +107,9 @@ namespace AddressBookSystem
                     case 8:
                         Console.WriteLine("Thank You For Using Address Book System.");
                         break;
+                    default:
+                        Console.WriteLine("Invalid Entry. Enter value between 1 to 8");
+                        break;
                 }
             } while (choice != 8);
         }
