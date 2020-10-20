@@ -117,6 +117,9 @@ namespace AddressBookSystem
                                 Console.WriteLine("Enter name of state :");
                                 addressBook.SearchPersonByState(Console.ReadLine());
                                 break;
+                            default:
+                                Console.WriteLine("Invalid Input.Enter 1 or 2");
+                                break;
                         }
                         break;
                     case 0:
