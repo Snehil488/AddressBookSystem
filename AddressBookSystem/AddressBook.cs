@@ -12,7 +12,7 @@ namespace AddressBookSystem
         public void AddContact(string firstName, string lastName, string address, string city, string state, string email, int zip, long phoneNumber, string bookName)
         {
             Contact contact = new Contact(firstName, lastName, address, city, state, email, zip, phoneNumber);
-            addressBookDictionary[bookName].addressBook.Add(contact.FirstName, contact);
+            addressBookDictionary[bookName].addressBook.Add(contact.FirstName + " " + contact.LastName, contact);
             Console.WriteLine("\nAdded Succesfully. \n");
         }
         public void ViewContact(string name, string bookName)
@@ -124,7 +124,7 @@ namespace AddressBookSystem
             }
             return book;
         }
-        public List<Contact> GetListOfDictctionaryKeys2(string firstName, Dictionary<string, Contact> d)
+        public List<Contact> GetListOfDictctionaryKeys2(Dictionary<string, Contact> d)
         {
             List<Contact> book = new List<Contact>();
             foreach (var value in d.Values)
@@ -147,14 +147,10 @@ namespace AddressBookSystem
         {
             foreach(AddressBook addressbookobj in addressBookDictionary.Values)
             {
-                foreach (string firstName in addressbookobj.addressBook.Keys)
+                List<Contact> contactList = GetListOfDictctionaryKeys2(addressbookobj.addressBook);
+                foreach (Contact contact in contactList.FindAll(c => c.City.Equals(city)).ToList())
                 {
-                    List<Contact> contactList = GetListOfDictctionaryKeys2(firstName, addressbookobj.addressBook);
-                    foreach(Contact contact in contactList.FindAll(c => c.City.Equals(city)).ToList())
-                    {
-                        Console.WriteLine(contact.ToString());
-                    }
-                    break;
+                    Console.WriteLine(contact.ToString());
                 }
             }
         }
@@ -162,14 +158,10 @@ namespace AddressBookSystem
         {
             foreach (AddressBook addressbookobj in addressBookDictionary.Values)
             {
-                foreach (string firstName in addressbookobj.addressBook.Keys)
+                List<Contact> contactList = GetListOfDictctionaryKeys2(addressbookobj.addressBook);
+                foreach (Contact contact in contactList.FindAll(c => c.State.Equals(state)).ToList())
                 {
-                    List<Contact> contactList = GetListOfDictctionaryKeys2(firstName, addressbookobj.addressBook);
-                    foreach (Contact contact in contactList.FindAll(c => c.State.Equals(state)).ToList())
-                    {
-                        Console.WriteLine(contact.ToString());
-                    }
-                    break;
+                    Console.WriteLine(contact.ToString());
                 }
             }
         }

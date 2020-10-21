@@ -56,17 +56,17 @@ namespace AddressBookSystem
                         addressBook.AddContact(firstName, lastName, address, city, state, email, zip, phoneNumber, bookName);
                         break;
                     case 2:
-                        Console.WriteLine("Enter First Name Of Contact To Edit :");
+                        Console.WriteLine("Enter Full Name Of Contact To Edit :");
                         string nameToEdit = Console.ReadLine();
                         addressBook.EditContact(nameToEdit, bookName);
                         break;
                     case 3:
-                        Console.WriteLine("Enter First Name Of Contact To Delete :");
+                        Console.WriteLine("Enter Full Name Of Contact To Delete :");
                         string nameToDelete = Console.ReadLine();
                         addressBook.DeleteContact(nameToDelete, bookName);
                         break;
                     case 4:
-                        Console.WriteLine("Enter First Name Of Contact To View :");
+                        Console.WriteLine("Enter Full Name Of Contact To View :");
                         string nameToView = Console.ReadLine();
                         addressBook.ViewContact(nameToView, bookName);
                         break;
