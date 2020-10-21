@@ -174,7 +174,7 @@ namespace AddressBookSystem
             {
                 foreach (Contact contact in addressBookObj.addressBook.Values)
                 {
-                    addressBookObj.cityDictionary.Add(contact, contact.City);
+                    addressBookObj.cityDictionary.TryAdd(contact, contact.City);
                 }
             }
         }
@@ -184,8 +184,41 @@ namespace AddressBookSystem
             {
                 foreach (Contact contact in addressBookObj.addressBook.Values)
                 {
-                    addressBookObj.stateDictionary.Add(contact, contact.State);
+                    addressBookObj.stateDictionary.TryAdd(contact, contact.State);
                 }
+            }
+        }
+        public void DisplayCountByCityandState()
+        {
+            CreateCityDictionary();
+            CreateStateDictionary();
+            Dictionary<string, int> countByCity = new Dictionary<string, int>();
+            Dictionary<string, int> countByState = new Dictionary<string, int>();
+            foreach(var obj in addressBookDictionary.Values)
+            {
+                foreach(var person in obj.cityDictionary)
+                {
+                    countByCity.TryAdd(person.Value, 0);
+                    countByCity[person.Value]++;
+                } 
+            }
+            Console.WriteLine("City wise count :");
+            foreach (var person in countByCity)
+            {
+                Console.WriteLine(person.Key + ":" + person.Value);
+            }
+            foreach (var obj in addressBookDictionary.Values)
+            {
+                foreach (var person in obj.stateDictionary)
+                {
+                    countByState.TryAdd(person.Value, 0);
+                    countByState[person.Value]++;
+                }
+            }
+            Console.WriteLine("State wise count :");
+            foreach (var person in countByState)
+            {
+                Console.WriteLine(person.Key + ":" + person.Value);
             }
         }
     }

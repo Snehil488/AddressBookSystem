@@ -27,7 +27,7 @@ namespace AddressBookSystem
             do
             {
                 Console.WriteLine($"Working On {bookName} AddressBook\n");
-                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Add New AddressBook \n7.Switch AddressBook \n8.Search Contact by city/state \n0.Exit Application\n");
+                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Add New AddressBook \n7.Switch AddressBook \n8.Search Contact by City/State \n9.Count by City/State \n0.Exit Application\n");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -121,6 +121,9 @@ namespace AddressBookSystem
                                 Console.WriteLine("Invalid Input.Enter 1 or 2");
                                 break;
                         }
+                        break;
+                    case 9:
+                        addressBook.DisplayCountByCityandState();
                         break;
                     case 0:
                         Console.WriteLine("Thank You For Using Address Book System.");
