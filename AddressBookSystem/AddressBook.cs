@@ -221,5 +221,17 @@ namespace AddressBookSystem
                 Console.WriteLine(person.Key + ":" + person.Value);
             }
         }
+        public void SortByName()
+        {
+            foreach (AddressBook addressBookobj in addressBookDictionary.Values)
+            {
+                List<string> list = addressBookobj.addressBook.Keys.ToList();
+                list.Sort();
+                foreach(string name in list)
+                {
+                    Console.WriteLine(addressBookobj.addressBook[name].ToString()); 
+                }
+            }
+        }
     }
 }
