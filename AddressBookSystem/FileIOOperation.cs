@@ -7,7 +7,7 @@ namespace AddressBookSystem
 {
     class FileIOOperation
     {
-        private string filePath = @"C:\Users\Snehil\Desktop\Local Git Repo\AddressBookSystem\AddressBookSystem\AddressBookRecord.txt";
+        private string filePath = @"C:\Users\Snehil\Desktop\Local Git Repo\AddressBookSystem\AddressBookSystem\UtilityFiles\AddressBookRecord.txt";
         public void WriteToFile(Dictionary<string, AddressBook> addressBookDictionary)
         {
             using StreamWriter writer = new StreamWriter(filePath, true);
