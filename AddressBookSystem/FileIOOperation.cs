@@ -7,9 +7,10 @@ namespace AddressBookSystem
 {
     class FileIOOperation
     {
+        private string filePath = @"C:\Users\Snehil\Desktop\Local Git Repo\AddressBookSystem\AddressBookSystem\AddressBookRecord.txt";
         public void WriteToFile(Dictionary<string, AddressBook> addressBookDictionary)
         {
-            using StreamWriter writer = new StreamWriter(@"C:\Users\Snehil\Desktop\Local Git Repo\AddressBookSystem\AddressBookSystem\AddressBookRecord.txt", true);
+            using StreamWriter writer = new StreamWriter(filePath, true);
             foreach (AddressBook addressBookobj in addressBookDictionary.Values)
             {
                 foreach (Contact contact in addressBookobj.addressBook.Values)
@@ -23,7 +24,7 @@ namespace AddressBookSystem
         public void ReadFromFile()
         {
             Console.WriteLine("Below are Contents of Text File");
-            string lines = File.ReadAllText(@"C:\Users\Snehil\Desktop\Local Git Repo\AddressBookSystem\AddressBookSystem\AddressBookRecord.txt");
+            string lines = File.ReadAllText(filePath);
             Console.WriteLine(lines);
         }
     }
